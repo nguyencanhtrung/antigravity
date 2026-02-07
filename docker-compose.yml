@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  antigravity-manager:
+    image: lbjlaq/antigravity-manager:latest
+    container_name: antigravity-manager
+    ports:
+      - "8045:8045"
+    environment:
+      - API_KEY=sk-1755a93ceccaa56a4ac8906f26410e4564d6684636611165b8e84ed0d47f469d
+      - WEB_PASSWORD=dobanbiet1A!
+      - ABV_MAX_BODY_SIZE=104857600
+    volumes:
+      - ~/.antigravity_tools:/root/.antigravity_tools
+    restart: unless-stopped
+    networks:
+      - antigravity-network
+
+networks:
+  antigravity-network:
+    driver: bridge
+    name: antigravity-network
+    internal: false
