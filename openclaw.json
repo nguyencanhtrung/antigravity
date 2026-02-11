@@ -1,0 +1,248 @@
+{
+    "meta": {
+        "lastTouchedVersion": "2026.2.6-3",
+        "lastTouchedAt": "2026-02-09T19:03:36.701Z"
+    },
+    "wizard": {
+        "lastRunAt": "2026-02-07T17:02:24.711Z",
+        "lastRunVersion": "2026.2.6-3",
+        "lastRunCommand": "configure",
+        "lastRunMode": "local"
+    },
+    "models": {
+        "mode": "merge",
+        "providers": {
+            "antigravity": {
+                "baseUrl": "http://localhost:8045/v1",
+                "apiKey": "sk-8c34158d0e47429ba7f7c4bde3b1e287",
+                "api": "openai-completions",
+                "models": [
+                    {
+                        "id": "claude-opus-4-6-thinking",
+                        "name": "Claude Opus 4.6 (Thinking)",
+                        "reasoning": true,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 200000,
+                        "maxTokens": 8192
+                    },
+                    {
+                        "id": "claude-sonnet-4-5-thinking",
+                        "name": "Claude Sonnet 4.5 (Thinking)",
+                        "reasoning": true,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 200000,
+                        "maxTokens": 8192
+                    },
+                    {
+                        "id": "claude-sonnet-4-5",
+                        "name": "Claude Sonnet 4.5",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 200000,
+                        "maxTokens": 8192
+                    },
+                    {
+                        "id": "gemini-2.5-flash",
+                        "name": "Gemini 2.5 Flash",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 1000000,
+                        "maxTokens": 8192
+                    },
+                    {
+                        "id": "gemini-2.5-flash-thinking",
+                        "name": "Gemini 2.5 Flash (Thinking)",
+                        "reasoning": true,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 1000000,
+                        "maxTokens": 8192
+                    },
+                    {
+                        "id": "gemini-3-flash",
+                        "name": "Gemini 3 Flash",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 1000000,
+                        "maxTokens": 8192
+                    },
+                    {
+                        "id": "gemini-3-pro-low",
+                        "name": "Gemini 3 Pro Low",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 2000000,
+                        "maxTokens": 8192
+                    },
+                    {
+                        "id": "gemini-3-pro-high",
+                        "name": "Gemini 3 Pro High",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {
+                            "input": 0,
+                            "output": 0,
+                            "cacheRead": 0,
+                            "cacheWrite": 0
+                        },
+                        "contextWindow": 2000000,
+                        "maxTokens": 8192
+                    }
+                ]
+            }
+        }
+    },
+    "agents": {
+        "defaults": {
+            "model": {
+                "primary": "antigravity/claude-opus-4-6-thinking",
+                "fallbacks": [
+                    "antigravity/claude-sonnet-4-5-thinking",
+                    "antigravity/gemini-3-pro-high"
+                ]
+            },
+            "workspace": "/home/mars/.openclaw/workspace",
+            "maxConcurrent": 4,
+            "subagents": {
+                "maxConcurrent": 8
+            }
+        }
+    },
+    "tools": {
+        "web": {
+            "search": {
+                "enabled": true
+            },
+            "fetch": {
+                "enabled": true
+            }
+        }
+    },
+    "messages": {
+        "ackReactionScope": "group-mentions"
+    },
+    "commands": {
+        "native": "auto",
+        "nativeSkills": "auto"
+    },
+    "channels": {
+        "telegram": {
+            "enabled": true,
+            "dmPolicy": "pairing",
+            "botToken": "<your bot token here>",
+            "groupPolicy": "allowlist",
+            "streamMode": "partial"
+        },
+        "googlechat": {
+            "enabled": true,
+            "groupPolicy": "allowlist",
+            "groups": {
+                "spaces/<your group ID here>": {
+                    "allow": true,
+                    "requireMention": false,
+                    "users": [
+                        "users/<your email here>"
+                    ],
+                    "systemPrompt": "Short answers only."
+                }
+            },
+            "serviceAccountFile": "/home/mars/.openclaw/<your service key>.json",
+            "audienceType": "app-url",
+            "audience": "<your webhook URL>/googlechat",
+            "webhookPath": "/googlechat",
+            "botUser": "users/<your email here>",
+            "mediaMaxMb": 20,
+            "actions": {
+                "reactions": true
+            },
+            "dm": {
+                "policy": "pairing",
+                "allowFrom": [
+                    "<email to allow direct messages from>"
+                ]
+            },
+            "typingIndicator": "message"
+        }
+    },
+    "gateway": {
+        "port": 18789,
+        "mode": "local",
+        "bind": "loopback",
+        "auth": {
+            "mode": "token",
+            "token": "<your token here to login>"
+        }
+    },
+    "skills": {
+        "install": {
+            "nodeManager": "npm"
+        }
+    },
+    "plugins": {
+        "entries": {
+            "telegram": {
+                "enabled": true
+            },
+            "googlechat": {
+                "enabled": true
+            }
+        }
+    }
+}
